@@ -286,7 +286,7 @@ const NeoCard = ({ children, className = "" }) => (
 /* --- MAIN COMPONENT --- */
 export default function Connect4() {
   const [user, setUser] = useState(null);
-  const [mode, setMode] = useState('menu');
+  const [mode, setMode] = useState('onboarding');
   const [board, setBoard] = useState(createBoard());
   const [turn, setTurn] = useState(PLAYER_1);
   const [winner, setWinner] = useState(null);
@@ -558,6 +558,44 @@ export default function Connect4() {
   );
 
   /* --- MODE VIEWS --- */
+
+  if (mode === 'onboarding') {
+    return (
+      <div className="min-h-screen bg-[#FF003C] flex flex-col items-center justify-center p-4 font-sans selection:bg-black selection:text-white">
+        <NeoCard className="max-w-md w-full text-center space-y-6 transform -rotate-1">
+          <div className="flex justify-center -mb-2">
+            <div className="flex gap-2 p-2 bg-black border-2 border-black rounded-lg">
+              <div className="w-6 h-6 rounded-full bg-[#FFE600] border-2 border-white animate-bounce-slow"></div>
+              <div className="w-6 h-6 rounded-full bg-[#4D79FF] border-2 border-white animate-bounce-slow delay-100"></div>
+              <div className="w-6 h-6 rounded-full bg-[#00D26A] border-2 border-white animate-bounce-slow delay-200"></div>
+              <div className="w-6 h-6 rounded-full bg-[#FF003C] border-2 border-white animate-bounce-slow delay-300"></div>
+            </div>
+          </div>
+
+          <h1 className="text-6xl font-black uppercase text-white drop-shadow-[4px_4px_0_rgba(0,0,0,1)] tracking-tighter" style={{ textShadow: '4px 4px 0 #000' }}>
+            Connect 4
+          </h1>
+          <p className="text-black font-black bg-white border-2 border-black inline-block px-4 py-1 rotate-2 rounded-lg text-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            NEO EDITION
+          </p>
+
+          <div className="bg-[#FFE600] border-4 border-black p-6 rounded-xl shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] text-left">
+            <h3 className="font-black text-xl mb-4 text-black uppercase border-b-4 border-black pb-2">How to Play</h3>
+            <ul className="space-y-3 font-bold text-black list-disc pl-5 marker:text-black">
+              <li>Connect <span className="text-[#FF003C]">4 discs</span> of your color to win.</li>
+              <li>Challenge the <span className="bg-black text-white px-1">AI</span> or play with a friend.</li>
+              <li>Block your opponent's moves!</li>
+              <li>Have fun with the vibes! ✨</li>
+            </ul>
+          </div>
+
+          <NeoButton onClick={() => setMode('menu')} color="bg-white" textColor="text-black" className="text-xl py-6">
+            LET'S PLAY <ArrowLeft className="w-6 h-6 rotate-180" />
+          </NeoButton>
+        </NeoCard>
+      </div>
+    );
+  }
 
   if (mode === 'menu') {
     return (
